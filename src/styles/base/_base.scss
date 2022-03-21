@@ -1,0 +1,30 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0px;
+}
+
+html, body {
+    height: 100%vh;
+    width: 100%vw;
+}
+
+main{
+    width: 100%;
+}
+
+.mt-1{
+    margin-top: 5px;
+}
+.mt-5{
+    margin-top: 20px;
+}
+.bm-1{
+    margin-bottom: 5px;
+}
+.bm-5{
+    margin-bottom: 20px;
+}
+
+.pointer {
+    cursor: pointer;
+}
