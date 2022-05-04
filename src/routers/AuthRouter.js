@@ -7,7 +7,7 @@ export const AuthRouter = () => {
   return (
       <div className="auth__main">
           <div className="auth__box-container">
-                    <Routes>
+               <Routes>
                 <Route path="login" element={<LoginScreen/>} />
                 <Route path="register" element={<RegisterScreen/>} />
 

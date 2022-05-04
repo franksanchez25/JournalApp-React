@@ -19,7 +19,7 @@ export const LoginScreen = () => {
   const { errorMessage } = useSelector(state => state.UI);
 
   const { loading } = useSelector(state => state.UI)
-  console.log(loading);
+  
 
   const handleLogin = (e)=> {
 

@@ -1,27 +1,52 @@
-    import React from 'react'
+    import React from 'react';
+    import moment from 'moment';
+import { useDispatch } from 'react-redux';
+import { activeNote } from '../../actions/notes';
     
-    export const JornalEntry = () => {
+    export const JornalEntry = ({id,body,date,title,url}) => {
+      const noteDate = moment(date);
+
+      const dispatch = useDispatch(); 
+      
+      const handleEntryNoteClick = ()=> {
+ 
+        dispatch( activeNote(id, 
+          {id,body,date,title,url
+          }) 
+          );
+ 
+      }
+
+
       return (
-        <div className="journal__entry pointer">
-               <div 
-               className="journal__entro-pricture"
-               style={{
-                   backgroundSize:'cover',
-                   backgroundImage: 'url(https://media.istockphoto.com/photos/picturesque-morning-in-plitvice-national-park-colorful-spring-scene-picture-id1093110112?s=612x612)'
-               }}
-               ></div>
+        <div 
+        className="journal__entry pointer"
+        onClick={handleEntryNoteClick}
+        >
+               {
+                 url &&
+                 <div 
+                  className="journal__entro-pricture"
+                  style={{
+                      backgroundSize:'cover',
+                      backgroundImage: `url(${url})`
+                  }}
+               >
+
+               </div>
+               }
                <div className="journal__entry-body">
                 <p className="journal__entry-title">
-                    Un nuevo dia
+               {title}
                 </p>
                 <p className="journal__entry-content">
-               Recomiendo más este codigo y que usen bootstrap para simplificar el avance del curso y ver más react.
+               {body}
                 </p>
                </div>
 
                <div className="journal__entry-date">
-                <span>Monday</span>
-                <h4>28</h4>
+                <span>{noteDate.format('dddd')}</span>
+                <h4>{noteDate.format('Do')}</h4>
                </div>
 
 

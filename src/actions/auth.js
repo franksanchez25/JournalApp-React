@@ -1,4 +1,5 @@
-import { getAuth, signInWithPopup,createUserWithEmailAndPassword,signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import Swal from 'sweetalert2';
+import { getAuth, signInWithPopup,createUserWithEmailAndPassword,signInWithEmailAndPassword, updateProfile, signOut } from 'firebase/auth';
 import { googleAuthProvider } from '../firebase/firebase-config';
 import { types } from "../types/types"
 import { FinishLoading, StartLoading } from './ui';
@@ -21,6 +22,7 @@ export const StartLoginEmailPassword = (email, password)=>{
             .catch(e => {
                 console.log(e);
                 dispatch(FinishLoading());
+                Swal.fire('ERROR',e.message, 'error');
             })
         }
 }
@@ -64,4 +66,21 @@ export const login = ( uid, displayName) => ({
             uid,
             displayName
         }
-    })
+    });
+
+    export const StartLogout = ()=> {
+      return (dispatch) => {
+          const auth = getAuth();
+          signOut(auth)
+          .then( ()=>{
+                dispatch(Logout());
+          } ).catch(e => {
+              console.log(e);
+          }) 
+      }
+    }
+
+    export const  Logout = ()=> ({
+
+        type: types.logout
+    });
